@@ -4,6 +4,10 @@ This is simple two page demo project.
 
 Here stripe php api, laravel10 and blade are used with BS, jQuery and Mysql
 
+## Screenshots
+
+![Laravel blade stripe checkout](https://laravelcodesnippets.com/images/github/laravel-blade-stripe-checkout.png)
+
 ## Following features are implemented
 
 - Schema migration created for users, carts, orders, order_items and food_items table
