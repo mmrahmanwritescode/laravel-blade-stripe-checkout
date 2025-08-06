@@ -4,6 +4,11 @@ This is a custom Laravel checkout system with Stripe payment processing and real
 
 Built with Laravel 10, Blade templates, Bootstrap, jQuery, and MySQL. 
 
+## Live Demo
+**Try it now:** [https://laravel-blade-stripe.laravelcs.com/checkout](https://laravel-blade-stripe.laravelcs.com/checkout)
+
+Experience the complete checkout flow with webhook integration in action!
+
 ## Screenshots
 
 ![Laravel blade stripe checkout](https://laravelcs.com/images/github/laravel-blade-stripe-checkout.png)
