@@ -6,7 +6,7 @@ Here stripe php api, laravel10 and blade are used with BS, jQuery and Mysql
 
 ## Screenshots
 
-![Laravel blade stripe checkout](https://laravelcodesnippets.com/images/github/laravel-blade-stripe-checkout.png)
+![Laravel blade stripe checkout](https://laravelcs.com/images/github/laravel-blade-stripe-checkout.png)
 
 ## Following features are implemented
 
@@ -36,16 +36,16 @@ Here stripe php api, laravel10 and blade are used with BS, jQuery and Mysql
 Feel free to use and re-use any way you want.
 
 ## This repo is also written as tutorial at laravelcodesnippets.com 
-- [A Step-by-Step Guide on Laravel Checkout System with Stripe](https://larasnippets.mahfoozurrahman.com/communities/projects/topics/stripe/posts/192)
+- [A Step-by-Step Guide on Laravel Checkout System with Stripe](https://laravelcs.com/communities/projects/topics/stripe/posts/192)
 
 
 
-## You can check more tutorials and posts in my site [LaravelCodeSnippet.com](https://laravelcodesnippets.com)
+## You can check more tutorials and posts in my site [LaravelCodeSnippet.com](https://laravelcs.com)
 
 ## Most viewed Links in Laravelcodesnippets.com
 
-- [Building mini ecommerce in Laravel](https://laravelcodesnippets.com/communities/projects/topics/mini-ecommerce/posts/113)
-- [Building mini issue trackcer with vue3 spa, authentication and authorization in Laravel](https://laravelcodesnippets.com/communities/projects/topics/mini-issue-tracker/posts/159)
+- [Building mini ecommerce in Laravel](https://laravelcs.com/communities/projects/topics/mini-ecommerce/posts/113)
+- [Building mini issue trackcer with vue3 spa, authentication and authorization in Laravel](https://laravelcs.com/communities/projects/topics/mini-issue-tracker/posts/159)
 
 ## Available for freelance work
 Feel free to reach me at [mahfoozurrahman.com](https://www.mahfoozurrahman.com)
