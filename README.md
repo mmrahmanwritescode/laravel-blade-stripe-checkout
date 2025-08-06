@@ -19,6 +19,11 @@ Here stripe php api, laravel10 and blade are used with BS, jQuery and Mysql
 - When transaction fails it shows failed message just under checkout submit button
 - Page redirects to order confirm page if transaction is successful
 - This stripe integration also supports SCA ( Strong Customer Authentication ) when 3d secure authenticatoin is required
+- **NEW: Stripe Webhook Integration** - Automatic order status updates via Stripe webhooks for real-time payment processing
+  - Handles payment events: succeeded, failed, canceled, requires_action, and dispute events
+  - Automatic order status synchronization with payment states
+  - Secure webhook signature verification
+  - Complete event logging and tracking
 
 
 ## How to use
@@ -27,6 +32,10 @@ Here stripe php api, laravel10 and blade are used with BS, jQuery and Mysql
 - run [ composer install and npm install]
 - create a mysql database and update the name in .env file
 - create stripe developer account and use stripe secret and publishable key from there
+- **Setup Stripe Webhooks** (see WEBHOOK_SETUP.md for detailed instructions):
+  - Add webhook secret to .env file: `STRIPE_WEBHOOK_SECRET=whsec_your_secret`
+  - Configure webhook endpoint in Stripe Dashboard: `https://yourdomain.com/stripe/webhook`
+  - Select events: payment_intent.succeeded, payment_intent.payment_failed, payment_intent.canceled, payment_intent.requires_action, charge.dispute.created
 - run [ php artisan migrate:fresh --seed ]
 - [ npm run dev and php artisan serve ]
 - browse to http://localhost:8000
@@ -37,6 +46,9 @@ Feel free to use and re-use any way you want.
 
 ## This repo is also written as tutorial at laravelcodesnippets.com 
 - [A Step-by-Step Guide on Laravel Checkout System with Stripe](https://laravelcs.com/communities/projects/topics/stripe/posts/192)
+
+## Webhook Documentation
+For detailed webhook setup and configuration instructions, see [WEBHOOK_SETUP.md](WEBHOOK_SETUP.md)
 
 
 
