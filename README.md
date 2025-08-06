@@ -1,8 +1,8 @@
-## Laravel10 checkout using stripe seeding dummy data
+## Laravel 10 Custom Stripe Checkout with Webhook Integration
 
-This is simple two page demo project.
+This is a custom Laravel checkout system with Stripe payment processing and real-time webhook integration featuring Stripe Payment Intents, SCA (Strong Customer Authentication) support, and automatic order status synchronization via webhooks. 
 
-Here stripe php api, laravel10 and blade are used with BS, jQuery and Mysql
+Built with Laravel 10, Blade templates, Bootstrap, jQuery, and MySQL. 
 
 ## Screenshots
 
