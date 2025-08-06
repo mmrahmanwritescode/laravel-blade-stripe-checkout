@@ -31,6 +31,8 @@ class CheckoutController extends Controller
 
     public function payment_init(Request $request, StripeService $stripeService) {
 
+        $response = ['paymentStatus' => false, 'error' => '', 'transactionID' => ''];
+
         if ($request->request_type == 'create_payment_intent') {
 
             $total_price = cart_summary()['total'] + $request->shipping_cost;
@@ -41,13 +43,17 @@ class CheckoutController extends Controller
             $order = $this->saveTempOrder($request);
             $response = $stripeService->create_customer($request->payment_intent_id, $request->email, $request->first_name . ' ' . $request->last_name);
             $response['api']['order_id'] = $order->id;
+            
+            // Update order with payment intent ID
+            $order->update(['payment_intent_id' => $request->payment_intent_id]);
 
-        } elseif ($request->request_type == 'payment_insert') {
+        } 
+        elseif ($request->request_type == 'payment_insert') {
 
             $order = Order::find($request->order_id);
             $response = $stripeService->payment_insert($request->payment_intent, $request->customer_id);
             if ($response['paymentStatus']) {
-                $order->update(['status' => 'order_placed', 'transaction_id' => $response['transactionID']]);
+                $order->update(['transaction_id' => $response['transactionID']]);
                 clearCart();
             }
         }

@@ -1,16 +1,54 @@
 let STRIPE_PUBLISHABLE_KEY = document.currentScript.getAttribute('STRIPE_PUBLISHABLE_KEY');
+const pay_on_spot = 'pay_on_spot';
+const paymentEle = 'paymentElement';
+const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+const paymentFrm = "shopping-cart-frm";
+const clientSecretParam = new URLSearchParams(window.location.search).get("payment_intent_client_secret");
+
+let elements;
+let payment_intent_id;
+let customer_id;
+let order_id;
+
+async function initialize() {
+
+    $.ajax({
+        type: "GET",
+        url: "/payment-init",
+        dataType : 'json',
+        data : {
+            request_type : 'create_payment_intent'
+        },
+        success: function(result){
+            const appearance = {
+                //theme: 'night',
+                rules: {
+                    '.Label': {
+                        fontSize: '0' // for hiding label elements for card detail
+                    }
+                },
+                // for dark theme.. default is white theme
+                //    variables: {
+                //     colorPrimary: '#212529',
+                //     colorBackground: '#212529',
+                //     colorText: '#ffffff',
+                //     colorDanger: '#df1b41',
+                // }
+            };
+            let clientSecret = result.api.clientSecret;
+            elements = stripe.elements({ clientSecret , appearance });
+
+            const paymentElement = elements.create("payment");
+            paymentElement.mount("#"+paymentEle);
+
+            payment_intent_id = result.api.id;
+
+            showCheckoutBtn(); // showing checkout button after card payment element is being loaded
+        }
+    });
+}
 
 document.addEventListener('DOMContentLoaded', function() {
-
-
-    const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
-
-    const pay_on_spot = 'pay_on_spot';
-    const paymentEle = 'paymentElement';
-    let elements;
-    const paymentFrm = "shopping-cart-frm";
-
-    const clientSecretParam = new URLSearchParams(window.location.search).get("payment_intent_client_secret");
 
     if (!clientSecretParam && getUIOrderType() !== pay_on_spot) {
         initialize();
@@ -20,43 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     checkStatus();
 
-    async function initialize() {
-
-        $.ajax({
-            type: "GET",
-            url: "/payment-init",
-            dataType : 'json',
-            data : {
-                request_type : 'create_payment_intent'
-            },
-            success: function(result){
-                const appearance = {
-                    //theme: 'night',
-                    rules: {
-                        '.Label': {
-                            fontSize: '0' // for hiding label elements for card detail
-                        }
-                    },
-                    // for dark theme.. default is white theme
-                    //    variables: {
-                    //     colorPrimary: '#212529',
-                    //     colorBackground: '#212529',
-                    //     colorText: '#ffffff',
-                    //     colorDanger: '#df1b41',
-                    // }
-                };
-                let clientSecret = result.api.clientSecret;
-                elements = stripe.elements({ clientSecret , appearance });
-
-                const paymentElement = elements.create("payment");
-                paymentElement.mount("#"+paymentEle);
-
-                payment_intent_id = result.api.id;
-
-                showCheckoutBtn(); // showing checkout button after card payment element is being loaded
-            }
-        });
-    }
 
     $('#'+paymentFrm).validate({
         rules: {
@@ -202,7 +203,7 @@ function showCheckoutBtn() {
     $("#checkout-btn").show();
 }
 function hideCheckoutBtn() {
-    $("#checkout-btn").show();
+    $("#checkout-btn").hide();
 }
 
 $('input[name="order_type"]').on('click', function(event) {

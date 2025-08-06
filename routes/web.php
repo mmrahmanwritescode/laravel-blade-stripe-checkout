@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\StripeWebhookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,4 +24,10 @@ Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.sh
 Route::post('/checkout/store', [CheckoutController::class, 'store'])->name('checkout.store');
 Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
 Route::get('/payment-init', [CheckoutController::class, 'payment_init'])->name('checkout.payment_init');
+Route::get('/order-list', [OrderController::class, 'index'])->name('orders.index');
 Route::get('/orders/confirmed/{orderId}', [OrderController::class, 'confirm'])->name('orders.confirm');
+
+// Stripe Webhook Route (exclude from CSRF protection)
+Route::post('/stripe/webhook', [StripeWebhookController::class, 'handle'])
+    ->name('stripe.webhook')
+    ->withoutMiddleware(['web']);

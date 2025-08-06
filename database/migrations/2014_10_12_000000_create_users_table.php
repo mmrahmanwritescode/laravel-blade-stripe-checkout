@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('post_code', 20)->nullable();
-            $table->foreignId('city_id')->default(0)->constrained()->onDelete('cascade');
+            //$table->foreignId('city_id')->default(0)->constrained()->onDelete('cascade');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();

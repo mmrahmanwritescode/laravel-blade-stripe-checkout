@@ -19,7 +19,17 @@ class Order extends Model
         'price',
         'notes',
         'order_type',
-        'refund_status'
+        'refund_status',
+        'payment_intent_id',
+        'payment_status',
+        'webhook_event_id',
+        'webhook_data',
+        'payment_completed_at'
+    ];
+
+    protected $casts = [
+        'webhook_data' => 'array',
+        'payment_completed_at' => 'datetime',
     ];
 
     public function user() {

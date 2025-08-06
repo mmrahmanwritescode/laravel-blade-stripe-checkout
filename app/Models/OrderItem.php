@@ -17,6 +17,10 @@ class OrderItem extends Model
         'discount'
     ];
 
+    public function order() {
+        return $this->belongsTo(Order::class);
+    }
+
     public function food() {
         return $this->belongsTo(FoodItem::class, 'food_item_id');
     }
